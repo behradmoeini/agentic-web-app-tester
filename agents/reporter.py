@@ -2,7 +2,7 @@
 
 import json
 from dataclasses import asdict
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -47,7 +47,7 @@ class ReporterAgent:
 
         payload = {
             "run_id": self.run_id,
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.now(UTC).isoformat(),
             "summary": {
                 "total_findings": len(self._findings),
                 "total_states": len(state_manager.states),

@@ -1,7 +1,7 @@
 ﻿from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any, Literal
 
 Severity = Literal["low", "medium", "high"]
@@ -39,7 +39,7 @@ class PageStateSnapshot:
     screenshot_path: str
     console_errors: list[str]
     network_errors: list[str]
-    captured_at: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    captured_at: str = field(default_factory=lambda: datetime.now(UTC).isoformat())
 
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
@@ -60,7 +60,7 @@ class ActionStep:
     url_after: str
     success: bool
     error_message: str = ""
-    timestamp: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    timestamp: str = field(default_factory=lambda: datetime.now(UTC).isoformat())
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

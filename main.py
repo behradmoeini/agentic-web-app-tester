@@ -1,7 +1,7 @@
 ﻿from __future__ import annotations
 
 import argparse
-from datetime import datetime
+from datetime import UTC, datetime
 
 from agents.explorer import ExplorerAgent
 from agents.planner import PlannerAgent
@@ -54,7 +54,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    run_id = datetime.utcnow().strftime("run_%Y%m%d_%H%M%S")
+    run_id = datetime.now(UTC).strftime("run_%Y%m%d_%H%M%S")
 
     config = ExecutionConfig(
         start_url=args.url,

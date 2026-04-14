@@ -2,7 +2,7 @@
 
 import hashlib
 import time
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -154,7 +154,7 @@ class BrowserController:
         )
 
     def _capture_screenshot(self, label: str) -> str:
-        timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S_%f")
+        timestamp = datetime.now(UTC).strftime("%Y%m%d_%H%M%S_%f")
         file_path = Path(self.config.screenshot_dir) / f"{label}_{timestamp}.png"
         self.page.screenshot(path=str(file_path), full_page=True)
         return str(file_path)
